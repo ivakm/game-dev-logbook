@@ -7,12 +7,15 @@ export function Navbar() {
         <ul className="flex items-center justify-between py-4">
           <li>
             <Link href="/" className="text-lg font-semibold">
-              Game Dev Logbook
+              GameDev Hub
             </Link>
           </li>
-          <li>
-            <Link href="/projects" className="hover:underline">
-              Projects
+          <li className="flex items-center gap-4 text-sm">
+            <Link href="/games" className="hover:underline">
+              Games
+            </Link>
+            <Link href="/articles" className="hover:underline">
+              Articles
             </Link>
           </li>
         </ul>

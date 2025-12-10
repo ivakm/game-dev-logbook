@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
 
 export const metadata: Metadata = {
-  title: "Game Dev Logbook",
-  description: "Personal development log for game projects",
+  title: "GameDev Hub",
+  description: "Indie games and game development articles.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
