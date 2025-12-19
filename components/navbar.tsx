@@ -18,6 +18,11 @@ export function Navbar() {
               Articles
             </Link>
           </li>
+          <li>
+            <Link href="/login" className="hover:underline">
+              Login
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
