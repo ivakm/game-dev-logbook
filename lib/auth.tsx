@@ -15,7 +15,7 @@ const AUTH_ID = "session";
 export async function login(login: string, password: string): Promise<void> {
   if (login !== "admin" && password !== "admin") {
     // TODO need to add a message and show it in toastr or something else
-    return;
+    throw new Error("Invalid credentials");
   }
 
   const record: AuthRecord = {
