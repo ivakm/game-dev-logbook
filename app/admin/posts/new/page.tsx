@@ -11,14 +11,14 @@ import { MultiSelect } from "primereact/multiselect";
 export default function NewPostPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [tagsDictionary, setTagsDictionary] = useState([]);
   const [tags, setTags] = useState([]);
-  const [chosenTags, setChosenTags] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:8080/tags`)
       .then((res) => res.json())
       .then((data) => {
-        setTags(data);
+        setTagsDictionary(data);
       });
   }, []);
 
@@ -26,7 +26,7 @@ export default function NewPostPage() {
     console.log({
       title,
       content,
-      chosenTags,
+      tags: tags.map((tag) => tag.id),
     });
   };
 
@@ -57,9 +57,9 @@ export default function NewPostPage() {
 
           <div className="flex-[3] space-y-4">
             <MultiSelect
-              value={chosenTags}
-              onChange={(e) => setChosenTags(e.value)}
-              options={tags}
+              value={tags}
+              onChange={(e) => setTags(e.value)}
+              options={tagsDictionary}
               optionLabel="name"
               placeholder="Tags"
               className="w-full"
