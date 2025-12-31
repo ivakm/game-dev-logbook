@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "quill/dist/quill.snow.css";
 import { Editor } from "primereact/editor";
@@ -12,20 +12,21 @@ export default function NewPostPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState([]);
+  const [chosenTags, setChosenTags] = useState([]);
 
-  const availableTags = [
-    { name: "Unreal Engine" },
-    { name: "UE5" },
-    { name: "GAS" },
-    { name: "Optimization" },
-    { name: "AI" },
-  ];
+  useEffect(() => {
+    fetch(`http://localhost:8080/tags`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTags(data);
+      });
+  }, []);
 
   const submitPage = () => {
     console.log({
       title,
       content,
-      tags,
+      chosenTags,
     });
   };
 
@@ -56,9 +57,9 @@ export default function NewPostPage() {
 
           <div className="flex-[3] space-y-4">
             <MultiSelect
-              value={tags}
-              onChange={(e) => setTags(e.value)}
-              options={availableTags}
+              value={chosenTags}
+              onChange={(e) => setChosenTags(e.value)}
+              options={tags}
               optionLabel="name"
               placeholder="Tags"
               className="w-full"
